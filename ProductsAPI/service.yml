@@ -1,0 +1,15 @@
+﻿apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: productsapi
+  namespace: {namespace}
+spec:
+  template:
+    spec:
+      containers:
+      - image: ciaalicorp.azurecr.io/productsapi:{tag}
+        env:
+        - name: TARGET
+          value: "Products API version: {tag}"
+      imagePullSecrets:
+        - name: acr-ciaalicorp
